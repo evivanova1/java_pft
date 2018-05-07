@@ -13,12 +13,19 @@ public class MyFirstProgram {
     Rectangle r = new Rectangle(4, 6);
     System.out.println("Площадь квардрата со сторонaми " + r.a + " и " + r.b + " = " + r.area());
 
-    Point p1 = new Point(1, 3);
-    Point p2 = new Point(8, 5);
-    System.out.println("Расстояние между двумя точками = " + p1.distance(p2));
+    Point p1 = new Point(1,3);
+    Point p2 = new Point(8,5);
+    System.out.println("Расстояние между двумя точками = " + distance(p1, p2));
   }
 
   public static void hello(String somebody) {
     System.out.println("Hello, " + somebody + "!");
+  }
+
+  public static double distance (Point p1, Point p2) {
+    double distanceX = p1.x - p2.x;
+    double distanceY = p1.y - p2.y;
+    return Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
+
   }
 }
