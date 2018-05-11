@@ -51,6 +51,7 @@ public class AddContactTests {
         wd.findElement(By.name("email")).clear();
         wd.findElement(By.name("email")).sendKeys("p.ivanov@gmail.com");
         wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+        wd.findElement(By.linkText("home page")).click();
     }
     
     @AfterMethod
