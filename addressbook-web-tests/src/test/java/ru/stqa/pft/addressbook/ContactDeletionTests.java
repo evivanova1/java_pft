@@ -14,7 +14,7 @@ public class ContactDeletionTests {
     FirefoxDriver wd;
     
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws Exception {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
