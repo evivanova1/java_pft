@@ -7,9 +7,9 @@ public class AddContactTests extends TestBase {
 
   @Test
   public void testAddContact() {
-    app.getGroupHelper().gotoAddNewContact();
-    app.getGroupHelper().fillAddNewContactForm(new AddContactData("Petr", "Ivanov", "+79265410230", "84956236520", "p.ivanov@gmail.com"));
-    app.getGroupHelper().enterAddNewContact();
+    app.getContactHelper().gotoAddNewContact();
+    app.getContactHelper().fillAddNewContactForm(new AddContactData("Petr", "Ivanov", "+79265410230", "84956236520", "p.ivanov@gmail.com"));
+    app.getContactHelper().enterAddNewContact();
     app.getNavigationHelper().returnToHomePage();
   }
 }
