@@ -26,6 +26,14 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
+  public void returnToHomePage() {
+    click(By.linkText("home page"));
+  }
+
+  public void goHome() {
+    click(By.linkText("home"));
+  }
+
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/input[2]"));
   }
