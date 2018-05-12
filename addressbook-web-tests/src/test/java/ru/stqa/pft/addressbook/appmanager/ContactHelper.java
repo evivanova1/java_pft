@@ -22,6 +22,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), addContactData.getEmail());
   }
 
+  public void alert() { wd.switchTo().alert().accept();}
+
   public void gotoAddNewContact() {
     click(By.linkText("add new"));
   }
@@ -35,7 +37,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void deleteContact() {
-    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
   public void editContact() {
