@@ -2,7 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.pft.addressbook.model.AddContactData;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
 
@@ -14,12 +14,12 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void fillAddNewContactForm(AddContactData addContactData) {
-    type(By.name("firstname"), addContactData.getFirstname());
-    type(By.name("middlename"), addContactData.getMiddlename());
-    type(By.name("home"), addContactData.getHomePhone());
-    type(By.name("mobile"), addContactData.getMobile());
-    type(By.name("email"), addContactData.getEmail());
+  public void fillAddNewContactForm(ContactData contactData) {
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("middlename"), contactData.getMiddlename());
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("email"), contactData.getEmail());
   }
 
   public void alert() { wd.switchTo().alert().accept();}
