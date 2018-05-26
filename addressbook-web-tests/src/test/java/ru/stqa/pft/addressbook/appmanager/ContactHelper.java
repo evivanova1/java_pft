@@ -60,7 +60,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+    wd.findElements(By.xpath(String.format("//input[@name='selected[]']"))).get(index).click();
   }
 
   public void submitContactModification() {
@@ -79,16 +79,17 @@ public class ContactHelper extends HelperBase {
   }
 
   public int getContactCount() {
-  return wd.findElements(By.name("selected[]")).size();
+  return wd.findElements(By.xpath(String.format("//input[@name='selected[]']"))).size();
   }
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.name("selected[]"));
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement element : elements) {
-      String firstname = element.getText();
-      String lastname = element.getText();
-      ContactData contact = new ContactData(firstname, lastname, null, null, null, null, null);
+      String firstname = element.findElement(By.cssSelector("td + td + td")).getText();
+      String lastname = element.findElement(By.cssSelector("td + td")).getText();
+      String id = element.findElement(By.cssSelector("td.center > input")).getAttribute("id");
+      ContactData contact = new ContactData(id, firstname, lastname, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
