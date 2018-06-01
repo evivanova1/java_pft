@@ -1,39 +1,53 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String middlename;
-  private final String mobile;
-  private final String homePhone;
-  private final String email;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String middlename;
+  private String mobile;
+  private String homePhone;
+  private String email;
   private String group;
 
-  public ContactData(int id, String firstname, String lastname, String middlename, String mobile, String homePhone, String email, String group) {
+  public ContactData withId(int id) {
     this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.middlename = middlename;
-    this.mobile = mobile;
-    this.homePhone = homePhone;
-    this.email = email;
-    this.group = group;
+    return this;
   }
 
-  public ContactData(String firstname, String lastname, String middlename, String mobile, String homePhone, String email, String group) {
-    this.id = Integer.MAX_VALUE;
+  public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
-    this.lastname = lastname;
-    this.middlename = middlename;
-    this.mobile = mobile;
-    this.homePhone = homePhone;
-    this.email = email;
-    this.group = group;
+    return this;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withMiddlename(String middlename) {
+    this.middlename = middlename;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   public int getId() {
