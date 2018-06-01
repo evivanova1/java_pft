@@ -56,7 +56,10 @@ public class ContactHelper extends HelperBase {
   }
 
   private void editContactById(int id) {
-
+    WebElement index = wd.findElement(By.cssSelector("input[value='" + id + "']"));
+    WebElement lists = index.findElement(By.xpath("self::input/parent::td/parent::tr"));
+    List<WebElement> values = lists.findElements(By.tagName("td"));
+    values.get(7).findElement(By.tagName("a")).click();
   }
 
   private void selectContactById(int id) {
