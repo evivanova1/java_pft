@@ -60,6 +60,10 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.xpath(".//td[8]")).get(index).click();
   }
 
+  private void editContactById(int id) {
+
+  }
+
   public void selectContact(int index) {
     wd.findElements(By.xpath("//input[@name='selected[]']")).get(index).click();
   }
@@ -79,8 +83,8 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public void modify(int index, ContactData contact) {
-    editContact(index);
+  public void modify(ContactData contact) {
+    editContactById(contact.getId());
     fillAddNewContactForm(contact, false);
     submitContactModification();
     goHome();
