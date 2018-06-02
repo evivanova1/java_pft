@@ -8,9 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -56,11 +54,27 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
+  public ContactData infoFromEditForm(ContactData contact) {
+    editContactById(contact.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
+            .withHomePhone(home).withMobile(mobile).withWorkPhone(work);
+  }
+
   private void editContactById(int id) {
-    WebElement index = wd.findElement(By.cssSelector("input[value='" + id + "']"));
-    WebElement lists = index.findElement(By.xpath("self::input/parent::td/parent::tr"));
-    List<WebElement> values = lists.findElements(By.tagName("td"));
-    values.get(7).findElement(By.tagName("a")).click();
+    WebElement value = wd.findElement(By.cssSelector("input[value='" + id + "']"));
+    WebElement row = value.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
+
+    //wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
+    //wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
+    //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
   private void selectContactById(int id) {
