@@ -25,7 +25,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("home"), contactData.getHomePhone());
-    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("email"), contactData.getEmail());
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -63,7 +63,7 @@ public class ContactHelper extends HelperBase {
     String work = wd.findElement(By.name("work")).getAttribute("value");
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
-            .withHomePhone(home).withMobile(mobile).withWorkPhone(work);
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
   }
 
   private void editContactById(int id) {
@@ -89,7 +89,7 @@ public class ContactHelper extends HelperBase {
     gotoAddNewContact();
     fillAddNewContactForm(contact, true);
     enterAddNewContact();
-    contactCashe = null;
+    //contactCache = null;
     returnToHomePage();
   }
 
@@ -97,14 +97,14 @@ public class ContactHelper extends HelperBase {
     editContactById(contact.getId());
     fillAddNewContactForm(contact, false);
     submitContactModification();
-    contactCashe = null;
+    //contactCache = null;
     goHome();
   }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteContact();
-    contactCashe = null;
+    //contactCache = null;
     alert();
     goHome();
   }
@@ -114,24 +114,23 @@ public class ContactHelper extends HelperBase {
   }
 
   public int count() {
-  return wd.findElements(By.xpath(String.format("//input[@name='selected[]']"))).size();
+    return wd.findElements(By.xpath(String.format("//input[@name='selected[]']"))).size();
   }
 
-  private Contacts contactCashe = null;
+  //private Contacts contactCache = null;
 
   public Contacts all() {
-    if (contactCashe != null) {
-      return new Contacts(contactCashe);
-    }
-    contactCashe = new Contacts();
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> value = element.findElements(By.tagName("td"));
       String firstname = value.get(2).getText();
       String lastname = value.get(1).getText();
       int id = Integer.parseInt(value.get(0).findElement(By.tagName("input")).getAttribute("id"));
-      contactCashe.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+      String[] phones = value.get(5).getText().split("\n");
+      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+              .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
     }
-    return contactCashe;
+    return contacts;
   }
 }
