@@ -5,11 +5,21 @@ public class ContactData {
   private String firstname;
   private String lastname;
   private String middlename;
+  private String allPhones;
   private String mobile;
   private String home;
   private String work;
   private String email;
   private String group;
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
   public ContactData withId(int id) {
     this.id = id;
