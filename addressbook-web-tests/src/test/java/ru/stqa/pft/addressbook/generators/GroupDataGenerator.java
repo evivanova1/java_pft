@@ -14,10 +14,10 @@ import java.util.List;
 
 public class GroupDataGenerator {
 
-  @Parameter (names = "-c", description = "Group count")
+  @Parameter(names = "-c", description = "Group count")
   public int count;
 
-  @Parameter (names = "-f", description = "Target file")
+  @Parameter(names = "-f", description = "Target file")
   public String file;
 
   public static void main(String[] args) throws IOException {
