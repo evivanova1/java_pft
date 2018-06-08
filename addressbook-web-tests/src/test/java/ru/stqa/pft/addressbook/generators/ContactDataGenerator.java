@@ -41,8 +41,9 @@ public class ContactDataGenerator {
     System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (ContactData contact : contacts) {
-      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n", contact.getLastname(), contact.getFirstname(),
-              contact.getMiddlename(), contact.getAddress(), contact.getEmail(), contact.getMobilePhone(), contact.getHomePhone()));
+      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getMiddlename(), contact.getMobilePhone(), contact.getHomePhone(), contact.getWorkPhone(),
+              contact.getEmail(), contact.getEmail2(), contact.getEmail3(),
+              contact.getAddress(), contact.getEmail()));
     }
     writer.close();
   }
@@ -50,10 +51,10 @@ public class ContactDataGenerator {
   private static List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<>();
     for (int i = 0; i < count; i++) {
-      contacts.add(new ContactData().withLastname(String.format("Ivanov %s", i))
-              .withFirstname(String.format("Ivan %s", i)).withMiddlename(String.format("Ivanovich %s", i))
-              .withAddress(String.format("Москва, ул.Балтийская, 25, кв.18 %s", i)).withEmail(String.format("i.ivanov@gmail.com %s", i))
-              .withMobilePhone(String.format("+79253654102 %s", i)).withHomePhone(String.format("84956235402 %s", i)));
+      contacts.add(new ContactData().withFirstname(String.format("Ivan %s", i)).withLastname(String.format("Ivanov %s", i)).withMiddlename(String.format("Ivanovich %s", i))
+              .withMobilePhone(String.format("+79253654102 %s", i)).withHomePhone(String.format("84956235402 %s", i)).withWorkPhone(String.format("84996235403 %s", i))
+              .withEmail(String.format("i.ivanov@gmail.com %s", i)).withEmail2(String.format("i.ivanov1@gmail.com %s", i)).withEmail3(String.format("i.ivanov2@gmail.com %s", i))
+              .withAddress(String.format("Москва, ул.Балтийская, 25, кв.18 %s", i)));
     }
     return contacts;
   }
