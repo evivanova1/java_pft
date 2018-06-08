@@ -1,0 +1,28 @@
+[
+  {
+    "firstname": "Ivan 0",
+    "lastname": "Ivanov 0",
+    "middlename": "Ivanovich 0",
+    "mobile": "+79253654102 0",
+    "home": "84956235402 0",
+    "work": "84996235403 0",
+    "address": "Москва, ул.Балтийская, 25, кв.18 0",
+    "email": "i.ivanov@gmail.com 0",
+    "email2": "i.ivanov1@gmail.com 0",
+    "email3": "i.ivanov2@gmail.com 0",
+    "group": "test1 0"
+  },
+  {
+    "firstname": "Ivan 1",
+    "lastname": "Ivanov 1",
+    "middlename": "Ivanovich 1",
+    "mobile": "+79253654102 1",
+    "home": "84956235402 1",
+    "work": "84996235403 1",
+    "address": "Москва, ул.Балтийская, 25, кв.18 1",
+    "email": "i.ivanov@gmail.com 1",
+    "email2": "i.ivanov1@gmail.com 1",
+    "email3": "i.ivanov2@gmail.com 1",
+    "group": "test1 1"
+  }
+]
