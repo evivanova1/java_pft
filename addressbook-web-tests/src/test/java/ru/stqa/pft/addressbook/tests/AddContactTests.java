@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,18 +15,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddContactTests extends TestBase {
   @DataProvider
-  public Iterator<Object[]> validContacts() {
+  public Iterator<Object[]> validContacts() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    File photo = new File("src/test/resources/tree.png");
-    list.add(new Object[]{new ContactData().withFirstname("Ivan").withLastname("Ivanov").withMiddlename("Ivanovich")
-            .withMobilePhone("+79265410230").withHomePhone("84956236520")
-            .withEmail("p.ivanov@gmail.com").withGroup("test1").withPhoto(photo)});
-    list.add(new Object[]{new ContactData().withFirstname("Ivan1").withLastname("Ivanov1").withMiddlename("Ivanovich1")
-            .withMobilePhone("+79265410231").withHomePhone("84956236521")
-            .withEmail("p.ivanov1@gmail.com").withGroup("test2").withPhoto(photo)});
-    list.add(new Object[]{new ContactData().withFirstname("Ivan2").withLastname("Ivanov2").withMiddlename("Ivanovich2")
-            .withMobilePhone("+79265410232").withHomePhone("84956236522")
-            .withEmail("p.ivanov2@gmail.com").withGroup("test3").withPhoto(photo)});
+    //File photo = new File("src/test/resources/tree.png");
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+    String line = reader.readLine();
+    while (line != null) {
+      String[] split = line.split(";");
+      list.add(new Object[] {new ContactData().withFirstname(split[0]).withLastname(split[1]).withMiddlename(split[2])
+              .withMobilePhone(split[3]).withHomePhone(split[4]).withWorkPhone(split[5])
+              .withEmail(split[6]).withEmail2(split[7]).withEmail3(split[8])
+              .withAddress(split[9]).withGroup((split[10]))});
+      line = reader.readLine();
+    }
     return list.iterator();
   }
 
