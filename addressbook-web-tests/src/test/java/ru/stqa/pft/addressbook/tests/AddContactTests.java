@@ -51,7 +51,7 @@ public class AddContactTests extends TestBase {
     return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
 
-  @Test(dataProvider = "validContactsFromJson")
+  @Test(dataProvider = "validContactsFromXml")
   public void testAddContact(ContactData contact) {
     Contacts before = app.contact().all();
     app.contact().create(contact);

@@ -10,7 +10,8 @@
     "email": "i.ivanov@gmail.com 0",
     "email2": "i.ivanov1@gmail.com 0",
     "email3": "i.ivanov2@gmail.com 0",
-    "group": "test1 0"
+    "group": "test1 0",
+    "photo": {}
   },
   {
     "firstname": "Ivan 1",
@@ -23,6 +24,7 @@
     "email": "i.ivanov@gmail.com 1",
     "email2": "i.ivanov1@gmail.com 1",
     "email3": "i.ivanov2@gmail.com 1",
-    "group": "test1 1"
+    "group": "test1 1",
+    "photo": {}
   }
 ]
