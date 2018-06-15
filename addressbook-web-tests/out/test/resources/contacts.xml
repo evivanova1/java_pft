@@ -13,18 +13,4 @@
     <group>test1 0</group>
     <photo>src\test\resources\tree.png</photo>
   </contact>
-  <contact>
-    <firstname>Ivan 1</firstname>
-    <lastname>Ivanov 1</lastname>
-    <middlename>Ivanovich 1</middlename>
-    <mobile>+79253654102 1</mobile>
-    <home>84956235402 1</home>
-    <work>84996235403 1</work>
-    <address>Москва, ул.Балтийская, 25, кв.18 1</address>
-    <email>i.ivanov@gmail.com 1</email>
-    <email2>i.ivanov1@gmail.com 1</email2>
-    <email3>i.ivanov2@gmail.com 1</email3>
-    <group>test1 1</group>
-    <photo>src\test\resources\tree.png</photo>
-  </contact>
 </list>

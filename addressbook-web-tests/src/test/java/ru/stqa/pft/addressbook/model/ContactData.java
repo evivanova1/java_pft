@@ -60,30 +60,6 @@ public class ContactData {
   @Type(type = "text")
   private String email3;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-    if (middlename != null ? !middlename.equals(that.middlename) : that.middlename != null) return false;
-    return group != null ? group.equals(that.group) : that.group == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-    result = 31 * result + (middlename != null ? middlename.hashCode() : 0);
-    result = 31 * result + (group != null ? group.hashCode() : 0);
-    return result;
-  }
-
   @Expose
   @Transient
   private String group;
@@ -229,6 +205,28 @@ public class ContactData {
   }
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+    return middlename != null ? middlename.equals(that.middlename) : that.middlename == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (middlename != null ? middlename.hashCode() : 0);
+    return result;
+  }
+
+  @Override
   public String toString() {
     return "ContactData{" +
 
@@ -236,6 +234,7 @@ public class ContactData {
 
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+
             '}';
   }
 
