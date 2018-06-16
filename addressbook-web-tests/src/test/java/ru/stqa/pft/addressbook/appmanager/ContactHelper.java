@@ -66,12 +66,12 @@ public class ContactHelper extends HelperBase {
     click(By.name("add"));
   }
 
-  public void addGroupForContact() {
-    if (!wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input")).isSelected()) {
-      click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
-    }
-    if (!wd.findElement(By.name("to_group")).isSelected()) {
-      click(By.name("to_group"));
+  public void addGroupForContact(ContactData contactData) {
+    if (contactData.getGroups().size() > 0) {
+      Assert.assertTrue(contactData.getGroups().size() == 1);
+      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("to_group")));
     }
     addToGroup();
   }
