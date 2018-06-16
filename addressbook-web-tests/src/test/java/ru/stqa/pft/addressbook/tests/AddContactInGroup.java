@@ -2,9 +2,7 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
+import ru.stqa.pft.addressbook.model.*;
 
 public class AddContactInGroup extends TestBase {
   @BeforeMethod
@@ -21,8 +19,11 @@ public class AddContactInGroup extends TestBase {
 
   @Test
   public void testAddContactInGroup() {
-    ContactData contactData = new ContactData();
     Groups groups = app.db().groups();
+    Contacts contacts = app.db().contacts();
+    ContactData contactData = contacts.iterator().next();
+
+    app.contact().selectContact();
     app.contact().addGroupForContact(contactData.inGroup(groups.iterator().next()));
   }
 }

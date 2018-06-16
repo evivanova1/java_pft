@@ -103,9 +103,20 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact() {
-    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
+   click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
   }
+  //public void selectContact(int index) {
+   // wd.findElements(By.name("selected[]")).get(index).click();
+  //}
 
+  public void addGroupForContact(ContactData contactData) {
+    // selectContactById(contactData.getId());
+    if (contactData.getGroups().size() > 0) {
+      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+    }
+    addToGroup();
+    returnToGroupPage(contactData.getGroups().iterator().next().getId());
+  }
 
   public void submitContactModification() {
     click(By.xpath("//div[@id='content']/form[1]/input[1]"));
@@ -135,20 +146,7 @@ public class ContactHelper extends HelperBase {
     goHome();
   }
 
-  public void addGroupForContact(ContactData contactData) {
-   // selectContactById(contactData.getId());
-    selectContact();
-    if (contactData.getGroups().size() > 0) {
-      Assert.assertTrue(contactData.getGroups().size() == 1);
-      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("to_group")));
-    }
-    addToGroup();
-    returnToGroupPage(contactData.getGroups().iterator().next().getId());
-  }
-
-  public boolean isThereAContact() {
+    public boolean isThereAContact() {
     return isElementPresent(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
   }
 
