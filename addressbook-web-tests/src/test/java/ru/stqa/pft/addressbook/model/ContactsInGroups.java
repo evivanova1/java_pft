@@ -34,7 +34,7 @@ public class ContactsInGroups extends ForwardingSet<ContactDataInGroups> {
 
   public ContactsInGroups without(ContactDataInGroups contactsInGroup) {
     ContactsInGroups contactsInGroups = new ContactsInGroups(this);
-    contactsInGroups.remove(contactsInGroups);
+    contactsInGroups.remove(contactsInGroup);
     return contactsInGroups;
   }
 }

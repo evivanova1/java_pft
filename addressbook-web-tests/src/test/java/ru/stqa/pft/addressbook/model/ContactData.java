@@ -70,7 +70,6 @@ public class ContactData {
           joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
   private Set<GroupData> groups = new HashSet<GroupData>();
 
-
   @Expose
   @Column(name = "photo")
   @Type(type = "text")
@@ -148,6 +147,11 @@ public class ContactData {
 
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
+    return this;
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
     return this;
   }
 
@@ -247,10 +251,5 @@ public class ContactData {
             ", lastname='" + lastname + '\'' +
 
             '}';
-  }
-
-  public ContactData inGroup(GroupData group) {
-    groups.add(group);
-    return this;
   }
 }
