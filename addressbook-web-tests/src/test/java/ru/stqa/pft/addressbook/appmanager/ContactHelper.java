@@ -44,13 +44,13 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  private void selectContactById(int id) {
+  public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void selectContact() {
-    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
-  }
+ // public void selectContact() {
+   // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
+  //}
   //public void selectContact(int index) {
   // wd.findElements(By.name("selected[]")).get(index).click();
   //}
@@ -82,7 +82,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public void addGroupForContact(ContactData contactData) {
-    // selectContactById(contactData.getId());
     if (contactData.getGroups().size() > 0) {
       new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
     }
