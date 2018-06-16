@@ -24,12 +24,12 @@ public class AddContactInGroup extends TestBase {
   public void testAddContactInGroup() {
     Groups groups = app.db().groups();
     Contacts contacts = app.db().contacts();
-    ContactData contactData = contacts.iterator().next();
-    app.contact().selectContactById(contactData.getId());
 
     ContactsInGroups before = app.db().contactsInGroups();
-    ContactDataInGroups contactsInGroup = before.iterator().next();
 
+    ContactData contactData = contacts.iterator().next();
+    app.contact().selectContactById(contactData.getId());
+    ContactDataInGroups contactsInGroup = new ContactDataInGroups().withContactId(contactData.getId()).withGroupId(groups.iterator().next().getId());
     app.contact().addGroupForContact(contactData.inGroup(groups.iterator().next()));
 
     ContactsInGroups after = app.db().contactsInGroups();
