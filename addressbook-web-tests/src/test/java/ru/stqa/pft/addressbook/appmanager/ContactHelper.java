@@ -70,17 +70,6 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
   }
 
-  public void addGroupForContact(ContactData contactData) {
-    if (contactData.getGroups().size() > 0) {
-      Assert.assertTrue(contactData.getGroups().size() == 1);
-      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("to_group")));
-    }
-    addToGroup();
-    returnToGroupPage(contactData.getGroups().iterator().next().getId());
-  }
-
   public ContactData infoFromEditForm(ContactData contact) {
     editContactById(contact.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
@@ -144,6 +133,19 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
     alert();
     goHome();
+  }
+
+  public void addGroupForContact(ContactData contactData) {
+   // selectContactById(contactData.getId());
+    selectContact();
+    if (contactData.getGroups().size() > 0) {
+      Assert.assertTrue(contactData.getGroups().size() == 1);
+      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("to_group")));
+    }
+    addToGroup();
+    returnToGroupPage(contactData.getGroups().iterator().next().getId());
   }
 
   public boolean isThereAContact() {

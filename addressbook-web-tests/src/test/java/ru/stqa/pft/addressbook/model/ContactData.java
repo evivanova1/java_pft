@@ -26,6 +26,7 @@ public class ContactData {
   private String lastname;
   @Expose
   @Column(name = "middlename")
+
   private String middlename;
   @Expose
   @Transient
