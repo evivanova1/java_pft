@@ -66,6 +66,10 @@ public class ContactHelper extends HelperBase {
     click(By.name("add"));
   }
 
+  public void returnToGroupPage(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
+  }
+
   public void addGroupForContact(ContactData contactData) {
     if (contactData.getGroups().size() > 0) {
       Assert.assertTrue(contactData.getGroups().size() == 1);
@@ -74,6 +78,7 @@ public class ContactHelper extends HelperBase {
       Assert.assertFalse(isElementPresent(By.name("to_group")));
     }
     addToGroup();
+    returnToGroupPage(contactData.getGroups().iterator().next().getId());
   }
 
   public ContactData infoFromEditForm(ContactData contact) {

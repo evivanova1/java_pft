@@ -12,6 +12,5 @@ public class AddContactInGroup extends TestBase {
     Groups groups = app.db().groups();
     app.contact().selectContact();
     app.contact().addGroupForContact(contactData.inGroup(groups.iterator().next()));
-    app.goTo().gotoHomePage();
   }
 }
