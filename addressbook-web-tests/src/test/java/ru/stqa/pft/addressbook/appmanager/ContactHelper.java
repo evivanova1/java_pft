@@ -36,6 +36,10 @@ public class ContactHelper extends HelperBase {
     click(By.name("add"));
   }
 
+  private void removeFromGroup() {
+    click(By.name("remove"));
+  }
+
   public void returnToGroupPage(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
   }
@@ -48,8 +52,8 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
- // public void selectContact() {
-   // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
+  // public void selectContact() {
+  // click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
   //}
   //public void selectContact(int index) {
   // wd.findElements(By.name("selected[]")).get(index).click();
@@ -86,6 +90,17 @@ public class ContactHelper extends HelperBase {
       new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
     }
     addToGroup();
+    returnToGroupPage(contactData.getGroups().iterator().next().getId());
+  }
+
+  public void selectFilter(ContactData contactData) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+  }
+
+  public void deleteContactFroumGroup(ContactData contactData) {
+    selectFilter(contactData);
+    selectContactById(contactData.getId());
+    removeFromGroup();
     returnToGroupPage(contactData.getGroups().iterator().next().getId());
   }
 
