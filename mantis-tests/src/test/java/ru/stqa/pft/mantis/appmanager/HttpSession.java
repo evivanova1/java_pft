@@ -34,14 +34,14 @@ public class HttpSession {
     post.setEntity(new UrlEncodedFormEntity(params));
     CloseableHttpResponse response = httpclient.execute(post);
     String body = geTextFrom(response);
-    return body.contains(String.format("<a href=\"/mantisbt-2.15.0/account_page.php\">%s</a>", username));
+    return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
   }
 
   private String geTextFrom(CloseableHttpResponse response) throws IOException {
     try {
       return EntityUtils.toString(response.getEntity());
     } finally {
-      httpclient.close();
+      response.close();
     }
   }
 
@@ -49,6 +49,6 @@ public class HttpSession {
     HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
     CloseableHttpResponse response = httpclient.execute(get);
     String body = geTextFrom(response);
-    return body.contains(String.format("<a href=\"/mantisbt-2.15.0/account_page.php\">%s</a>", username));
+    return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
   }
 }
