@@ -58,7 +58,7 @@ public class JamesHelper {
     String password = app.getProperty("mailserver.adminpassword");
 
     try {
-      telnet.connect(mailserver, port);
+       telnet.connect(mailserver, port);
       in = telnet.getInputStream();
       out = new PrintStream( telnet.getOutputStream() );
 
