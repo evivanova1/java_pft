@@ -24,6 +24,7 @@ public class ApplicationManager {
   private JamesHelper jamesHelper;
   private NavigationHelper navigationHelper;
   private LoginHelper loginHelper;
+  private UserHelper userHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -47,27 +48,6 @@ public class ApplicationManager {
 
   public String getProperty(String key) {
     return properties.getProperty(key);
-  }
-
-  public RegistrationHelper registration() {
-    if (registrationHelper == null) {
-      registrationHelper = new RegistrationHelper(this);
-    }
-    return registrationHelper;
-  }
-
-  public LoginHelper loginHelper() {
-    if (loginHelper == null) {
-      loginHelper = new LoginHelper(this);
-    }
-    return loginHelper;
-  }
-
-  public FtpHelper ftp() {
-    if(ftp == null) {
-      ftp = new FtpHelper(this);
-    }
-    return ftp;
   }
 
   public WebDriver getDriver() {
@@ -104,5 +84,33 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
+  }
+
+  public RegistrationHelper registration() {
+    if (registrationHelper == null) {
+      registrationHelper = new RegistrationHelper(this);
+    }
+    return registrationHelper;
+  }
+
+  public LoginHelper loginHelper() {
+    if (loginHelper == null) {
+      loginHelper = new LoginHelper(this);
+    }
+    return loginHelper;
+  }
+
+  public FtpHelper ftp() {
+    if(ftp == null) {
+      ftp = new FtpHelper(this);
+    }
+    return ftp;
+  }
+
+  public UserHelper users() {
+    if (userHelper == null) {
+      userHelper = new UserHelper(this);
+    }
+    return userHelper;
   }
 }
