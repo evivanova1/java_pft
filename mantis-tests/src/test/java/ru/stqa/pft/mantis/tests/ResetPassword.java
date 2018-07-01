@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UserData;
+import ru.stqa.pft.mantis.model.Users;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import static org.testng.Assert.assertTrue;
 
@@ -25,17 +25,18 @@ public class ResetPassword extends TestBase{
   public void testResetPassword() throws IOException, MessagingException {
     app.loginHelper().login("administrator", "root1");
     app.goTo().manageUser();
-    Set<UserData> user = app.users().all();
-    UserData selectUser = user.iterator().next();
+    Users users = app.db().users();
+    UserData selectUser = users.iterator().next();
     app.goTo().editUser(selectUser.getId());
     app.goTo().resetPassword();
-    String newPassword = "newPassword";
-    String email = selectUser.getEmail();
+    String password = "newPassword";
     String username = selectUser.getUsername();
+    String email = selectUser.getEmail();
     List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
-    app.registration().finish(confirmationLink, newPassword);
-    assertTrue(app.newSession().login(username, newPassword));
+    app.registration().finish(confirmationLink, password);
+    assertTrue(app.newSession().login(username, password));
+    assertTrue(app.newSession().isLoggedInAs(username));
   }
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
@@ -48,5 +49,4 @@ public class ResetPassword extends TestBase{
   public void stopMailServer() {
     app.mail().stop();
   }
-
 }
