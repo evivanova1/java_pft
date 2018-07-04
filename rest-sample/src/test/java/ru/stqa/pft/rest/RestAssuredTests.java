@@ -16,7 +16,7 @@ public class RestAssuredTests {
 
   @BeforeClass
   public void init() {
-    RestAssured.authentication = RestAssured.basic("e8637ccbfd74c12ca0feb5833536413d", "");
+    RestAssured.authentication = RestAssured.basic("8db1936afeb977188aa1f634d9a69a4b", "");
   }
 
   @Test
