@@ -13,7 +13,6 @@ import java.util.Set;
 
 public class TestBase {
 
-
   public Executor getExecutor() {
     return Executor.newInstance().auth("601f5dd9c548847641dc26728bc24eab", "");
   }
