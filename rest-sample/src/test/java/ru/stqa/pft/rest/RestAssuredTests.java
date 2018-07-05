@@ -16,7 +16,7 @@ public class RestAssuredTests {
 
   @BeforeClass
   public void init() {
-    RestAssured.authentication = RestAssured.basic("8db1936afeb977188aa1f634d9a69a4b", "");
+    RestAssured.authentication = RestAssured.basic("601f5dd9c548847641dc26728bc24eab", "");
   }
 
   @Test
@@ -30,7 +30,7 @@ public class RestAssuredTests {
   }
 
   private Set<Issue> getIssues() {
-    String json = RestAssured.get("http://demo.bugify.com/api/issues.json").asString();
+    String json = RestAssured.get("http://demo.bugify.com/api/issues.json?limit=800").asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
