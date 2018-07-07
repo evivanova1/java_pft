@@ -1,6 +1,8 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -81,5 +83,9 @@ public class ApplicationManager {
 
   public ContactHelper contact() {
     return contactHelper;
+  }
+
+  public byte[] takeScreenshot() {
+    return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
   }
 }
